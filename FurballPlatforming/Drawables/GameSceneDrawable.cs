@@ -5,6 +5,7 @@ using Furball.Engine.Engine.Graphics.Drawables;
 using Furball.Engine.Engine.Graphics.Drawables.Managers;
 using Furball.Vixie;
 using Furball.Vixie.Backends.Shared;
+using FurballPlatforming.Collision;
 using FurballPlatforming.Drawables.Entities;
 
 namespace FurballPlatforming.Drawables; 

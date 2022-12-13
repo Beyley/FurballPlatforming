@@ -1,9 +1,7 @@
-using System.Drawing;
 using System.Numerics;
 using FurballPlatforming.Drawables;
-using RectangleF = Eto.Drawing.RectangleF;
 
-namespace FurballPlatforming;
+namespace FurballPlatforming.Collision;
 
 public enum CollidableType {
 	Wall,
