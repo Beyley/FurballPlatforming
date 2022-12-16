@@ -1,5 +1,6 @@
 using System.Numerics;
 using Furball.Engine;
+using Furball.Engine.Engine;
 using Furball.Engine.Engine.Graphics;
 using Furball.Engine.Engine.Graphics.Drawables;
 using Furball.Engine.Engine.Graphics.Drawables.Managers;
@@ -8,13 +9,15 @@ using Furball.Vixie.Backends.Shared;
 using FurballPlatforming.Collision;
 using FurballPlatforming.Drawables.Entities;
 
-namespace FurballPlatforming.Drawables; 
+namespace FurballPlatforming.Drawables;
 
 public class GameSceneDrawable : CompositeDrawable {
 	public Collidable[] Collidables = Array.Empty<Collidable>();
 
 	private Texture _collisionArrow;
-	
+
+	private readonly FixedTimeStepMethod _gameTick;
+
 	public GameSceneDrawable() {
 		this.Children.Add(new PlayerEntityDrawable(this));
 
@@ -24,6 +27,16 @@ public class GameSceneDrawable : CompositeDrawable {
 		};
 
 		this._collisionArrow = ContentManager.LoadTextureFromFileCached("arrow.png");
+
+		FurballGame.TimeStepMethods.Add(this._gameTick = new FixedTimeStepMethod(1000d / 120d, GameTick));
+	}
+
+	private void GameTick() {
+		
+	}
+
+	public override void Dispose() {
+		FurballGame.TimeStepMethods.Remove(this._gameTick);
 	}
 
 	public override void Draw(double time, DrawableBatch batch, DrawableManagerArgs args) {
